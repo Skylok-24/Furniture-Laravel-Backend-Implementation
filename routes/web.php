@@ -8,6 +8,7 @@ use App\Http\Controllers\SingleController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Middleware\CheckIfNameAhmed;
+use App\Http\Controllers\ThemeController;
 
 
 Route::get('/', function () {
@@ -35,30 +36,37 @@ require __DIR__.'/auth.php';
 
 //Route::get('/mahmoud',[TestController::class,'mahmoud']);
 
-Route::get('/home',function () {
-    return view('index');
-});
+// Route::get('/home',function () {
+//     return view('index');
+// });
 
-Route::redirect('here','there');
+// Route::redirect('here','there');
 
 //Route::get('/printName/{name?}',[TestController::class,'print'])->name('PrintMyName');
 
-Route::controller(TestController::class)->name('test.')->prefix('/user')->middleware('check_name')->group(function(){
-    Route::get('/printName/{name?}','print')->name('PrintMyName');
-    Route::get('/mahmoud','mahmoud');
-});
+// Route::controller(TestController::class)->name('test.')->prefix('/user')->middleware('check_name')->group(function(){
+//     Route::get('/printName/{name?}','print')->name('PrintMyName');
+//     Route::get('/mahmoud','mahmoud');
+// });
 
-Route::get('/hello',SingleController::class)->middleware('check_name');
-Route::get('/hello2',SingleController::class);
-
-
-Route::resource('posts',PostController::class)->except(['update','store']);
-
-Route::get('hello3',[UserController::class,'index']);
+// Route::get('/hello',SingleController::class)->middleware('check_name');
+// Route::get('/hello2',SingleController::class);
 
 
+// Route::resource('posts',PostController::class)->except(['update','store']);
 
-Route::get('/home',function(){
-    $data = 3;
-    return view('user.home',compact('data'));
+// Route::get('hello3',[UserController::class,'index']);
+
+
+
+// Route::get('/home',function(){
+//     $data = 3;
+//     return view('user.home',compact('data'));
+// });
+
+
+Route::controller(ThemeController::class)->group(function(){
+    Route::get('/about','about');
+    Route::get('/services','services');
+    Route::get('/contact','contact');
 });
