@@ -65,8 +65,8 @@ require __DIR__.'/auth.php';
 // });
 
 
-Route::controller(ThemeController::class)->group(function(){
-    Route::get('/about','about');
-    Route::get('/services','services');
-    Route::get('/contact','contact');
+Route::controller(ThemeController::class)->name('theme.')->group(function(){
+    Route::get('/about','about')->name('about');
+    Route::get('/services','services')->name('services');
+    Route::get('/contact','contact')->name('contact');
 });
