@@ -69,4 +69,5 @@ Route::controller(ThemeController::class)->name('theme.')->group(function(){
     Route::get('/about','about')->name('about');
     Route::get('/services','services')->name('services');
     Route::get('/contact','contact')->name('contact');
+    Route::post('/contact/store','store')->name('contact.store');
 });
