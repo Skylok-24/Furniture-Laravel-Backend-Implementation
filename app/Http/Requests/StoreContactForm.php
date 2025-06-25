@@ -22,8 +22,8 @@ class StoreContactForm extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|min:5' ,
-            'last_name' => 'required|string|min:5',
+            'first_name' => 'required|string' ,
+            'last_name' => 'required|string',
             'email' => 'required|email:rfc,dns',
             'message' => 'nullable'
         ];
