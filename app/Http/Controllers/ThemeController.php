@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactForm;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Livewire\Attributes\Validate;
 
@@ -20,6 +21,8 @@ class ThemeController extends Controller
 
     public function contact() 
     {
+        $data = Contact::all();
+        dd($data);
         return view('theme.contact');
     }
 
