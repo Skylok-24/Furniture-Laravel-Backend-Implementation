@@ -25,7 +25,8 @@ class StoreContactForm extends FormRequest
             'first_name' => 'required|string' ,
             'last_name' => 'required|string',
             'email' => 'required|email:rfc,dns',
-            'message' => 'nullable'
+            'message' => 'nullable',
+            'category_id' => 'required|exists:categories,id'
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactForm;
+use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Livewire\Attributes\Validate;
@@ -21,12 +22,12 @@ class ThemeController extends Controller
 
     public function contact() 
     {
-        $data = Contact::where('id', '=',1)->get();
-        $data = Contact::get()->first();
-        $data = Contact::find(2);
+        // $data = Contact::where('id', '=',1)->get();
+        // $data = Contact::get()->first();
+        // $data = Contact::find(2);
 
 
-        $contact = new Contact();
+        // $contact = new Contact();
 
         //Create record
         // $contact->first_name = 'yahya';
@@ -61,7 +62,11 @@ class ThemeController extends Controller
         // $contact->delete();
 
         // dd('Created Succefull');
-        return view('theme.contact');
+
+
+        $categories = Category::get();
+
+        return view('theme.contact',compact('categories'));
     }
 
     public function store(StoreContactForm $request)
@@ -78,6 +83,9 @@ class ThemeController extends Controller
 
         // $validateData = $request->validated();
         // dd($validateData);
+
+        // $contacts =  Contact::find(13);
+        // dd($contacts->category->name);
 
         $validateData = $request->validated();
 
