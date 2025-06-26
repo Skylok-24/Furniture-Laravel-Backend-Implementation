@@ -1,33 +1,25 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SingleController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\Users\UserController;
-use App\Http\Middleware\CheckIfNameAhmed;
 use App\Http\Controllers\ThemeController;
-
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
+
 
 
 /*Route::get('/lokman',function() {
